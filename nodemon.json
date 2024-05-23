@@ -1,0 +1,6 @@
+{
+	"watch": ["src", "views"],
+	"ext": ".js,.ejs,.json,.yml",
+	"ignore": ["docker*.yml"],
+	"exec": "node src/index.js"
+}

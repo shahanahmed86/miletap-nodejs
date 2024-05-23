@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15.1-bullseye
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app
+    volumes:
+      - data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_PASSWORD=$DB_PASS
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_DB=$DB_NAME
+    ports:
+      - '$DB_PORT:5432'
+
+  adminer:
+    tty: true
+    restart: unless-stopped
+    image: adminer:4.8.1-standalone
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  app:
+    driver: bridge
