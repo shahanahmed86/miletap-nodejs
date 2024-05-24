@@ -3,7 +3,6 @@ const { Login, SignUp } = require('../../validations/auth.validation');
 const { User } = require('../../models/user.model');
 const { NotAuthenticated, ConflictError } = require('../../utils/errors.util');
 const { compareSync, hashSync } = require('../../library/bcrypt.library');
-const firebaseAuth = require('../../library/firebase.library');
 
 const router = Router();
 
@@ -16,8 +15,6 @@ router.post('/signup', async (req, res, next) => {
 
 	const payload = { ...args, password: hashSync(password) };
 	const user = await User.create(payload);
-
-	const token = await firebaseAuth.signup(user.email, password);
 
 	res.status(201).send({ user, token });
 });
@@ -36,8 +33,6 @@ router
 
 		const isValid = compareSync(args.password, user.password);
 		if (!isValid) return next(new NotAuthenticated('Password mismatched!'));
-
-		const token = await firebaseAuth.login(user.id, args.email);
 
 		res.status(200).send({ user, token });
 	});
@@ -65,9 +60,6 @@ function getToken(req) {
  */
 async function checkAuth(req, res, next) {
 	try {
-		const token = getToken(req);
-		const decoded = await firebaseAuth.verifyToken(token);
-
 		const now = Math.floor(Date.now() / 1000);
 
 		const isExpired = now >= decoded.exp;
