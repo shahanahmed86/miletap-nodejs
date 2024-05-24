@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { Login, SignUp } = require('../../validations/auth.validation');
-const { User } = require('../../models/user.model');
+const userDao = require('../../sequelize/dao/user.dao');
 const { NotAuthenticated, ConflictError } = require('../../utils/errors.util');
 const { compareSync, hashSync } = require('../../library/bcrypt.library');
 
@@ -10,11 +10,11 @@ router.post('/signup', async (req, res, next) => {
 	const _args = { ...req.params, ...req.query, ...req.body };
 	const { password, ...args } = await SignUp.parseAsync(_args);
 
-	const exists = await User.findOne({ where: { email: args.email } });
+	const exists = await userDao.model.findOne({ where: { email: args.email } });
 	if (exists) return next(new ConflictError('User already exists!'));
 
 	const payload = { ...args, password: hashSync(password) };
-	const user = await User.create(payload);
+	const user = await userDao.model.create(payload);
 
 	res.status(201).send({ user, token });
 });
@@ -28,7 +28,7 @@ router
 		const _args = { ...req.params, ...req.query, ...req.body };
 		const args = await Login.parseAsync(_args);
 
-		const user = await User.findOne({ where: { email: args.email } });
+		const user = await userDao.model.findOne({ where: { email: args.email } });
 		if (!user) return next(new NotAuthenticated('User not found!'));
 
 		const isValid = compareSync(args.password, user.password);
@@ -65,7 +65,7 @@ async function checkAuth(req, res, next) {
 		const isExpired = now >= decoded.exp;
 		if (isExpired) throw new NotAuthenticated('Token expired');
 	
-		const user = await User.findOne({ where: { id: decoded.id, email: decoded.email }});
+		const user = await userDao.model.findOne({ where: { id: decoded.id, email: decoded.email }});
 		if (!user) throw new NotAuthenticated();
 	
 		res.locals.user = user;
