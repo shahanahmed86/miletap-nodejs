@@ -10,24 +10,24 @@ module.exports = {
 				allowNull: false,
 				type: DataTypes.UUID,
 				primaryKey: true,
-				defaultValue: Sequelize.literal('gen_random_uuid()')
+				defaultValue: Sequelize.literal('gen_random_uuid()'),
 			},
 			name: {
 				type: DataTypes.STRING(100),
-				allowNull: false
+				allowNull: false,
 			},
 			created_at: {
 				type: DataTypes.DATE,
-				defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+				defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
 			},
 			last_updated_at: {
 				type: DataTypes.DATE,
-				defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-			}
+				defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+			},
 		});
 	},
 
 	async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('roles');
-	}
+		await queryInterface.dropTable('roles');
+	},
 };

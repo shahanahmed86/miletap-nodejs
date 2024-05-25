@@ -4,7 +4,7 @@ const defaultOptions = {
 	updatedAt: 'last_updated_at',
 	underscored: true,
 	timestamps: false,
-	freezeTableName: true
+	freezeTableName: true,
 };
 
 module.exports = { defaultOptions };

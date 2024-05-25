@@ -18,7 +18,7 @@ class BadRequest extends HttpError {
 	 * BadRequest constructor
 	 * @param {string} message
 	 */
-	constructor(message = 'error.badRequest') {
+	constructor(message = 'Bad Request!') {
 		super(400, message);
 	}
 }
@@ -28,7 +28,7 @@ class NotFound extends HttpError {
 	 * NotFound constructor
 	 * @param {string} message
 	 */
-	constructor(message = 'error.notFound') {
+	constructor(message = 'Not Found!') {
 		super(404, message);
 	}
 }
@@ -38,7 +38,7 @@ class ConflictError extends HttpError {
 	 * ConflictError constructor
 	 * @param {string} message
 	 */
-	constructor(message = 'error.conflict') {
+	constructor(message = 'Conflict Error!') {
 		super(409, message);
 	}
 }
@@ -48,7 +48,7 @@ class NotAuthorized extends HttpError {
 	 * NotAuthorized constructor
 	 * @param {string} message
 	 */
-	constructor(message = 'error.notAuthorized') {
+	constructor(message = 'Not Authorized!') {
 		super(422, message);
 	}
 }
@@ -58,7 +58,7 @@ class NotAuthenticated extends HttpError {
 	 * NotAuthenticated constructor
 	 * @param {string} message
 	 */
-	constructor(message = 'error.notAuthenticated') {
+	constructor(message = 'Not Authenticated!') {
 		super(401, message);
 	}
 }
@@ -68,7 +68,7 @@ class Forbidden extends HttpError {
 	 * Forbidden constructor
 	 * @param {string} message
 	 */
-	constructor(message = 'error.forbidden') {
+	constructor(message = 'Forbidden Error') {
 		super(403, message);
 	}
 }
@@ -78,7 +78,7 @@ class NotAcceptable extends HttpError {
 	 * NotAcceptable constructor
 	 * @param {string} message
 	 */
-	constructor(message = 'error.notAcceptable') {
+	constructor(message = 'Not Acceptable!') {
 		super(406, message);
 	}
 }
@@ -88,7 +88,7 @@ class InternalError extends HttpError {
 	 * InternalError constructor
 	 * @param {string} message
 	 */
-	constructor(message = 'error.internalError') {
+	constructor(message = 'Internal Error!') {
 		super(500, message);
 	}
 }
@@ -143,5 +143,5 @@ module.exports = {
 	NotAcceptable,
 	InternalError,
 	convertUnknownIntoError,
-	unhandledOrUncaught
+	unhandledOrUncaught,
 };

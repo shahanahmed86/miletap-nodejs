@@ -10,40 +10,40 @@ module.exports = {
 				allowNull: false,
 				type: DataTypes.UUID,
 				primaryKey: true,
-				defaultValue: Sequelize.literal('gen_random_uuid()')
+				defaultValue: Sequelize.literal('gen_random_uuid()'),
 			},
 			email: {
 				type: DataTypes.STRING(100),
-				allowNull: false
+				allowNull: false,
 			},
 			password: {
 				type: DataTypes.STRING(100),
-				allowNull: false
+				allowNull: false,
 			},
 			first_name: {
-				type: DataTypes.STRING(100)
+				type: DataTypes.STRING(100),
 			},
 			last_name: {
-				type: DataTypes.STRING(100)
+				type: DataTypes.STRING(100),
 			},
 			phone: {
-				type: DataTypes.STRING(16)
+				type: DataTypes.STRING(16),
 			},
 			birthday: {
-				type: DataTypes.DATEONLY
+				type: DataTypes.DATEONLY,
 			},
 			created_at: {
 				type: DataTypes.DATE,
-				defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+				defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
 			},
 			last_updated_at: {
 				type: DataTypes.DATE,
-				defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-			}
+				defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+			},
 		});
 	},
 
 	async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('users');
-	}
+		await queryInterface.dropTable('users');
+	},
 };

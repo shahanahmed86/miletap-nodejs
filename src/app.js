@@ -31,7 +31,7 @@ async function expressApp(app) {
 	app.set('trust proxy', NUMBER_OF_PROXY);
 
 	// logs
-	app.use(morgan('dev'))
+	app.use(morgan('dev'));
 
 	// disable x-powered-by to avoid giving hint to hackers
 	app.disable('x-powered-by');

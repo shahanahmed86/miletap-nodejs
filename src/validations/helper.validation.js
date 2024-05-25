@@ -15,7 +15,7 @@ const refineArgument = (args, keys) => keys.some((param) => param in args);
  */
 const commonErrors = (arg) => ({
 	required_error: new BadRequest(`${arg} is required!`),
-	invalid_type_error: new BadRequest(`${arg} has an invalid type!`)
+	invalid_type_error: new BadRequest(`${arg} has an invalid type!`),
 });
 
 module.exports = { refineArgument, commonErrors };

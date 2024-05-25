@@ -5,8 +5,8 @@ const configs = require('../config/app');
 
 /**
  * swagger
- * @param {import('express').Express} app 
- * @returns 
+ * @param {import('express').Express} app
+ * @returns
  */
 const swagger = (app) => {
 	const [first, ...res] = name.split('');

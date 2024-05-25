@@ -9,7 +9,7 @@ const BaseDao = require('./base.dao');
  * @property {?string} phone
  * @property {?string} birthday
  * @property {string} role_id
- * 
+ *
  * @typedef {import('./base.dao').BaseDoc | UserDoc} Document
  *
  * @typedef {import('sequelize').Model<Document, any>} Model

@@ -16,25 +16,25 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 				type: DataTypes.UUID,
 				primaryKey: true,
-				defaultValue: sequelize.literal('gen_random_uuid()')
+				defaultValue: sequelize.literal('gen_random_uuid()'),
 			},
 			name: {
 				type: DataTypes.STRING(100),
-				allowNull: false
+				allowNull: false,
 			},
 			created_at: {
 				type: DataTypes.DATE,
-				defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+				defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
 			},
 			last_updated_at: {
 				type: DataTypes.DATE,
-				defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-			}
+				defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+			},
 		},
 		{
 			...defaultOptions,
 			indexes: INDEX_FIELDS.map((name) => ({ fields: [{ name }] })),
-		}
+		},
 	);
 
 	Role.associate = (models) => {

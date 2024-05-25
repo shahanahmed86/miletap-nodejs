@@ -5,9 +5,9 @@ const BaseDao = require('./base.dao');
  * @property {string} email
  * @property {string} password
  * @property {?string} role_id
- * 
+ *
  * @typedef {import('./base.dao').BaseDoc | AdminDoc} Document
- * 
+ *
  * @typedef {import('sequelize').Model<Document, any>} Model
  * @typedef {import('sequelize').ModelStatic<Model>} ModelStatic
  * @typedef {import('sequelize').FindOptions<Document>} FindOptions
