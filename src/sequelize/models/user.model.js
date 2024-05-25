@@ -1,3 +1,5 @@
+const { defaultOptions } = require('./helper');
+
 const INDEX_FIELDS = [
 	'email',
 	'first_name',
@@ -53,9 +55,8 @@ module.exports = (sequelize, DataTypes) => {
 			}
 		},
 		{
+			...defaultOptions,
 			indexes: INDEX_FIELDS.map((name) => ({ fields: [{ name }] })),
-			createdAt: 'created_at',
-			updatedAt: 'last_updated_at'
 		}
 	);
 

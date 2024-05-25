@@ -29,17 +29,17 @@ const Configs = z.object({
 		username: z.string().min(1),
 		password: z.string().min(1),
 		database: z.string().min(1),
-		logging: z.boolean()
+		logging: z.enum(['true', 'false']).transform((arg) => (arg === 'true' ? console.log : false))
 	}),
 	bcrypt: z.object({
 		salt: z.string().min(2).transform(transformToInteger),
-		maxBytes: z.string().min(2).transform(transformToInteger),
+		maxBytes: z.string().min(2).transform(transformToInteger)
 	}),
 	jwt: z.object({
 		secret: z.string().min(1),
 		accessToken: z.string().min(1).transform(transformToInteger),
-		refreshToken: z.string().min(1).transform(transformToInteger),
-	}),
+		refreshToken: z.string().min(1).transform(transformToInteger)
+	})
 });
 
 const allEnvs = {
@@ -56,11 +56,11 @@ const allEnvs = {
 		username: process.env.DB_USER,
 		password: process.env.DB_PASS,
 		database: process.env.DB_NAME,
-		logging: true
+		logging: 'true'
 	},
 	bcrypt: {
 		salt: process.env.BCRYPT_SALT,
-		maxBytes: process.env.BCRYPT_MAX_BYTES,
+		maxBytes: process.env.BCRYPT_MAX_BYTES
 	},
 	jwt: {
 		secret: process.env.JWT_SECRET,

@@ -1,3 +1,5 @@
+const { defaultOptions } = require('./helper');
+
 const INDEX_FIELDS = ['name'];
 
 /**
@@ -30,15 +32,14 @@ module.exports = (sequelize, DataTypes) => {
 			}
 		},
 		{
+			...defaultOptions,
 			indexes: INDEX_FIELDS.map((name) => ({ fields: [{ name }] })),
-			createdAt: 'created_at',
-			updatedAt: 'last_updated_at'
 		}
 	);
 
 	Role.associate = (models) => {
-		Role.hasMany(models.users, { as: 'user', foreignKey: 'user_id' });
-		Role.hasMany(models.admins, { as: 'admin', foreignKey: 'admin_id' });
+		Role.hasMany(models.users, { as: 'users' });
+		Role.hasMany(models.admins, { as: 'admins' });
 	};
 
 	return Role;

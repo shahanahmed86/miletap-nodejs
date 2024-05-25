@@ -11,7 +11,7 @@ const config = dbConfig[env];
 
 const sequelize = new Sequelize(config);
 
-const db = {};
+const models = {};
 
 fs
   .readdirSync(__dirname)
@@ -20,21 +20,22 @@ fs
       file.indexOf('.') !== 0 &&
       file !== basename &&
       file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
+      file.indexOf('.test.js') === -1 &&
+      file.indexOf('helper.js') === -1
     );
   })
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, DataTypes);
-    db[model.name] = model;
+    models[model.name] = model;
   });
 
-Object.keys(db).forEach(modelName => {
-  if (!db[modelName].associate) return;
+Object.keys(models).forEach(modelName => {
+  if (!models[modelName].associate) return;
   
-  db[modelName].associate(db);
+  models[modelName].associate(models);
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+models.sequelize = sequelize;
+models.Sequelize = Sequelize;
 
-module.exports = db;
+module.exports = models;
