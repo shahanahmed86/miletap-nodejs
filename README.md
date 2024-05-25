@@ -12,14 +12,16 @@
   - Docker architecture
   - Container orchestration with docker compose **_(at-least)_**
   - node:18 and its npm installer
+  - swagger
 
 ## Implemented Feature
 
 - User/Admin authentication APIs
 - Users query for admin APIs
 - Email will be send to the admin when a user signs up
-- Pre-commit hook to check linting/testing and formatting
+- Pre-commit hook to check linting and formatting
 - Used JWT for authentication instead of firebase or oauth
+- api documents are exposed on /api-docs
 
 ## Installation steps
 
