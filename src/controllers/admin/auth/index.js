@@ -8,4 +8,4 @@ const auth = {
 	refreshToken,
 };
 
-module.exports = { auth };
+module.exports = auth;

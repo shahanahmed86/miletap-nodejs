@@ -1,6 +1,6 @@
 tags:
   - name: admin/auth
-    description: Authentication APIs for user
+    description: Authentication APIs for admin
 
 paths:
   /api/v1/admin/auth:

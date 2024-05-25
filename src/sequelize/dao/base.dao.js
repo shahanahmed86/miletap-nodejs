@@ -39,6 +39,15 @@ class BaseDao {
 	}
 
 	/**
+	 * findAll
+	 * @param {FindOptions} filter
+	 * @returns {Promise<Model[]>} returns found object or null
+	 */
+	async findAll(filter) {
+		return this.model.findAll(filter);
+	}
+
+	/**
 	 * create
 	 * @param {TDoc | BaseDoc} payload
 	 * @param {CreateOptions} options

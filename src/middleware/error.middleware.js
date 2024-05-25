@@ -51,7 +51,7 @@ function checkAuth(role) {
 
 			const role_id = await roleDao.getRoleId(role);
 
-			if (role === 'admin') {
+			if (role === 'user') {
 				const user = await userDao.findOne({
 					where: { id: decoded.id, email: decoded.email, role_id },
 					include: [{ association: 'role', required: true }],
@@ -59,7 +59,7 @@ function checkAuth(role) {
 				if (!user) throw new NotAuthenticated();
 
 				res.locals.user = user;
-			} else if (role === 'user') {
+			} else if (role === 'admin') {
 				const admin = await adminDao.findOne({
 					where: { id: decoded.id, email: decoded.email, role_id },
 					include: [{ association: 'role', required: true }],

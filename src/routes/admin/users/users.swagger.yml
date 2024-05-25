@@ -1,0 +1,27 @@
+tags:
+  - name: admin/users
+    description: Authentication APIs for user
+
+paths:
+  /api/v1/admin/users:
+    get:
+      summary: List of users
+      tags: [admin/users]
+      responses:
+        200:
+          description: Returns list of users
+
+  /api/v1/admin/users/{id}:
+    get:
+      summary: Refresh Token
+      tags: [admin/users]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: UUID of the user id
+      responses:
+        200:
+          description: Returns user's payload
