@@ -4,6 +4,7 @@ const roleDao = require('../../../sequelize/dao/roles.dao');
 const { ConflictError } = require('../../../utils/errors.util');
 const { SignUp } = require('../../../validations/auth.validation');
 const { generateAuthTokens } = require('../../../library/jwt.library');
+const { sendEmailWhenUserCreated } = require('../../../utils/logic.util');
 
 /**
  * signup controller
@@ -31,6 +32,9 @@ async function signup(req, res, next) {
 		email: user.dataValues.email,
 		role_id: user.dataValues.role_id,
 	});
+
+	await sendEmailWhenUserCreated('A New User Registered', user.dataValues);
+
 	res.status(200).send({ user, accessToken, refreshToken });
 }
 

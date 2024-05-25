@@ -3,11 +3,10 @@ const compression = require('compression');
 const cors = require('cors');
 const express = require('express');
 const path = require('path');
-const { SIZE_LIMIT } = require('./utils/constants.util');
+const { SIZE_LIMIT, NUMBER_OF_PROXY } = require('./utils/constants.util');
 const swagger = require('./library/swagger.library');
 const { errorHandler, notFound } = require('./middleware/error.middleware');
 const routes = require('./routes');
-const { NUMBER_OF_PROXY } = require('./utils/constants.util');
 
 /**
  * @param {import('express').Express} app
@@ -35,6 +34,9 @@ async function expressApp(app) {
 
 	// disable x-powered-by to avoid giving hint to hackers
 	app.disable('x-powered-by');
+
+	// Configure Express to use EJS
+	app.set('view engine', 'ejs');
 
 	// healthcheck
 	app.get('/healthcheck', (_req, res) => {

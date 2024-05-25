@@ -45,6 +45,15 @@ const Configs = z.object({
 		email: z.string().email(),
 		password: z.string().regex(PASSWORD_REGEX),
 	}),
+	nodemailer: z.object({
+		host: z.string(),
+		port: z.string().transform(transformToInteger),
+		auth: z.object({
+			name: z.string().min(1),
+			user: z.string().email(),
+			pass: z.string(),
+		}),
+	}),
 });
 
 const allEnvs = {
@@ -75,6 +84,15 @@ const allEnvs = {
 	admin: {
 		email: process.env.ADMIN_EMAIL,
 		password: process.env.ADMIN_PASSWORD,
+	},
+	nodemailer: {
+		host: process.env.NM_HOST,
+		port: process.env.NM_PORT,
+		auth: {
+			name: process.env.MAIL_NAME,
+			user: process.env.NM_USER,
+			pass: process.env.NM_PASSWORD,
+		},
 	},
 };
 
