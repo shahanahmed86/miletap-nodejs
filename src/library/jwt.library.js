@@ -38,7 +38,7 @@ function decodePayload(token) {
 
 /**
  * generateAuthTokens
- * @param {{id: string}} data object
+ * @param {{id: string, email: string, role_id: string}} data object
  * @returns {[string, string]}
  */
 function generateAuthTokens(data) {

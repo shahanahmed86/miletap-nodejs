@@ -6,6 +6,7 @@
  * @returns {Promise<void>}
  */
 async function loggedIn(_, res) {
+	console.log('res.locals', res.locals);
 	res.status(200).send(res.locals.user);
 }
 

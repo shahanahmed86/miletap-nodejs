@@ -4,7 +4,7 @@ const BaseDao = require('./base.dao');
  * @typedef {object} AdminDoc
  * @property {string} email
  * @property {string} password
- * @property {?string} role_id
+ * @property {string} role_id
  *
  * @typedef {import('./base.dao').BaseDoc | AdminDoc} Document
  *

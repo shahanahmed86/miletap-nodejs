@@ -6,7 +6,7 @@ const router = Router();
 
 const { loggedIn, login, refreshToken } = controllers.admin.auth;
 
-router.route('/').get(checkAuth, loggedIn).post(login);
+router.route('/').get(checkAuth('admin'), loggedIn).post(login);
 
 router.get('/refresh/:token', refreshToken);
 

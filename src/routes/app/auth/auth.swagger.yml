@@ -16,22 +16,22 @@ paths:
               properties:
                 email:
                   type: string
-                  example: shahan.khaan@gmail.com
+                  example: test-user@yopmail.com
                 password:
                   type: string
                   example: 123Abc456
                 first_name:
                   type: string
-                  example: Shahan
+                  example: test first name
                 last_name:
                   type: string
-                  example: Ahmed Khan
+                  example: test last name
                 phone:
                   type: string
-                  example: +923362122588
+                  example: +923001234567
                 birthday:
                   type: string
-                  example: 1986-01-29
+                  example: 1996-03-15
       responses:
         201:
           description: Returns user's payload along with tokens
@@ -56,7 +56,7 @@ paths:
                 email:
                   type: string
                   description: email
-                  example: shahan.khaan@gmail.com
+                  example: test-user@yopmail.com
                 password:
                   type: string
                   description: password

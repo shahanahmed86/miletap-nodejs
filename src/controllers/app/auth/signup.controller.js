@@ -26,7 +26,11 @@ async function signup(req, res, next) {
 		include: [{ association: 'role', required: true }],
 	});
 
-	const [accessToken, refreshToken] = generateAuthTokens({ id: user.id, email: user.email });
+	const [accessToken, refreshToken] = generateAuthTokens({
+		id: user.dataValues.id,
+		email: user.dataValues.email,
+		role_id: user.dataValues.role_id,
+	});
 	res.status(200).send({ user, accessToken, refreshToken });
 }
 

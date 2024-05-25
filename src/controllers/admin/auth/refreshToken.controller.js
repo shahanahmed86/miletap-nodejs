@@ -20,7 +20,11 @@ async function refreshToken(req, res, next) {
 	});
 	if (!user) return next(new NotAuthenticated('User not found!'));
 
-	const [accessToken, refreshToken] = generateAuthTokens({ id: user.id, email: user.email });
+	const [accessToken, refreshToken] = generateAuthTokens({
+		id: user.dataValues.id,
+		email: user.dataValues.email,
+		role_id: user.dataValues.role_id,
+	});
 	res.status(200).send({ admin: user, accessToken, refreshToken });
 }
 

@@ -24,7 +24,11 @@ async function login(req, res, next) {
 	const isValid = compareSync(args.password, user.password);
 	if (!isValid) return next(new NotAuthenticated('Password mismatched!'));
 
-	const [accessToken, refreshToken] = generateAuthTokens({ id: user.id, email: user.email });
+	const [accessToken, refreshToken] = generateAuthTokens({
+		id: user.dataValues.id,
+		email: user.dataValues.email,
+		role_id: user.dataValues.role_id,
+	});
 	res.status(200).send({ user, accessToken, refreshToken });
 }
 
