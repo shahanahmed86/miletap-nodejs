@@ -1,5 +1,6 @@
-const auth = require('./auth');
+const app = require('./app');
+const admin = require('./admin');
 
-const controllers = { auth };
+const controllers = { app, admin };
 
 module.exports = controllers;

@@ -1,5 +1,8 @@
 'use strict';
 
+const configs = require('../../config/app');
+const { hashSync } = require('../../library/bcrypt.library');
+
 const ROLES = ['user', 'admin'];
 
 /** @type {import('sequelize-cli').Migration} */
@@ -8,8 +11,11 @@ module.exports = {
 		const [[{ id: role_id }]] = await queryInterface.sequelize.query(
 			`select id from roles where name = 'admin'`,
 		);
+
+		const { ADMIN_EMAIL, ADMIN_PASSWORD } = process.env;
+
 		await queryInterface.bulkInsert('admins', [
-			{ email: 'shahan.khaan@gmail.com', password: '123Abc456', role_id },
+			{ email: ADMIN_EMAIL, password: hashSync(ADMIN_PASSWORD), role_id },
 		]);
 	},
 

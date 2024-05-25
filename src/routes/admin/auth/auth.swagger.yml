@@ -1,51 +1,18 @@
 tags:
-  - name: auth
+  - name: admin/auth
     description: Authentication APIs for user
 
 paths:
-  /api/v1/auth/signup:
-    post:
-      summary: Sign Up
-      tags: [auth]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: shahan.khaan@gmail.com
-                password:
-                  type: string
-                  example: 123Abc456
-                first_name:
-                  type: string
-                  example: Shahan
-                last_name:
-                  type: string
-                  example: Ahmed Khan
-                phone:
-                  type: string
-                  example: +923362122588
-                birthday:
-                  type: string
-                  example: 1986-01-29
-      responses:
-        201:
-          description: Returns user's payload along with tokens
-
-  /api/v1/auth:
+  /api/v1/admin/auth:
     get:
       summary: Logged In
-      tags: [auth]
+      tags: [admin/auth]
       responses:
         200:
           description: Returns logged in user
     post:
       summary: Login
-      tags: [auth]
+      tags: [admin/auth]
       requestBody:
         required: true
         content:
@@ -65,10 +32,10 @@ paths:
         200:
           description: Returns user's payload along with tokens
 
-  /api/v1/auth/refresh/{token}:
+  /api/v1/admin/auth/refresh/{token}:
     get:
       summary: Refresh Token
-      tags: [auth]
+      tags: [admin/auth]
       parameters:
         - in: path
           name: token

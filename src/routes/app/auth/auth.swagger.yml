@@ -1,0 +1,81 @@
+tags:
+  - name: app/auth
+    description: Authentication APIs for user
+
+paths:
+  /api/v1/app/auth/signup:
+    post:
+      summary: Sign Up
+      tags: [app/auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: shahan.khaan@gmail.com
+                password:
+                  type: string
+                  example: 123Abc456
+                first_name:
+                  type: string
+                  example: Shahan
+                last_name:
+                  type: string
+                  example: Ahmed Khan
+                phone:
+                  type: string
+                  example: +923362122588
+                birthday:
+                  type: string
+                  example: 1986-01-29
+      responses:
+        201:
+          description: Returns user's payload along with tokens
+
+  /api/v1/app/auth:
+    get:
+      summary: Logged In
+      tags: [app/auth]
+      responses:
+        200:
+          description: Returns logged in user
+    post:
+      summary: Login
+      tags: [app/auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: email
+                  example: shahan.khaan@gmail.com
+                password:
+                  type: string
+                  description: password
+                  example: 123Abc456
+      responses:
+        200:
+          description: Returns user's payload along with tokens
+
+  /api/v1/app/auth/refresh/{token}:
+    get:
+      summary: Refresh Token
+      tags: [app/auth]
+      parameters:
+        - in: path
+          name: token
+          schema:
+            type: string
+          required: true
+          description: refresh token string to get new access and refresh token
+      responses:
+        200:
+          description: Returns user's payload along with tokens

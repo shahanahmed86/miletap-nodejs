@@ -1,9 +1,9 @@
 const { hashSync } = require('bcryptjs');
-const userDao = require('../../sequelize/dao/users.dao');
-const roleDao = require('../../sequelize/dao/roles.dao');
-const { ConflictError } = require('../../utils/errors.util');
-const { SignUp } = require('../../validations/auth.validation');
-const { generateAuthTokens } = require('../../library/jwt.library');
+const userDao = require('../../../sequelize/dao/users.dao');
+const roleDao = require('../../../sequelize/dao/roles.dao');
+const { ConflictError } = require('../../../utils/errors.util');
+const { SignUp } = require('../../../validations/auth.validation');
+const { generateAuthTokens } = require('../../../library/jwt.library');
 
 /**
  * signup controller

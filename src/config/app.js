@@ -1,6 +1,7 @@
 require('dotenv/config');
 
 const z = require('zod');
+const { PASSWORD_REGEX } = require('../utils/constants.util');
 
 /**
  * transformStringIntoInteger
@@ -40,6 +41,10 @@ const Configs = z.object({
 		accessToken: z.string().min(1).transform(transformToInteger),
 		refreshToken: z.string().min(1).transform(transformToInteger),
 	}),
+	admin: z.object({
+		email: z.string().email(),
+		password: z.string().regex(PASSWORD_REGEX),
+	}),
 });
 
 const allEnvs = {
@@ -66,6 +71,10 @@ const allEnvs = {
 		secret: process.env.JWT_SECRET,
 		accessToken: process.env.ACCESS_TOKEN,
 		refreshToken: process.env.REFRESH_TOKEN,
+	},
+	admin: {
+		email: process.env.ADMIN_EMAIL,
+		password: process.env.ADMIN_PASSWORD,
 	},
 };
 

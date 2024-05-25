@@ -1,8 +1,8 @@
 const { compareSync } = require('bcryptjs');
-const userDao = require('../../sequelize/dao/users.dao');
-const { NotAuthenticated } = require('../../utils/errors.util');
-const { Login } = require('../../validations/auth.validation');
-const { generateAuthTokens } = require('../../library/jwt.library');
+const adminDao = require('../../../sequelize/dao/admins.dao');
+const { NotAuthenticated } = require('../../../utils/errors.util');
+const { Login } = require('../../../validations/auth.validation');
+const { generateAuthTokens } = require('../../../library/jwt.library');
 
 /**
  * login Controller
@@ -15,7 +15,7 @@ async function login(req, res, next) {
 	const _args = { ...req.params, ...req.query, ...req.body };
 	const args = await Login.parseAsync(_args);
 
-	const user = await userDao.findOne({
+	const user = await adminDao.findOne({
 		where: { email: args.email },
 		include: [{ association: 'role', required: true }],
 	});

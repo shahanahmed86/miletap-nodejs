@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const controllers = require('../../controllers');
-const { checkAuth } = require('../../middleware/error.middleware');
+const controllers = require('../../../controllers');
+const { checkAuth } = require('../../../middleware/error.middleware');
 
 const router = Router();
 
-const { signup, loggedIn, login, refreshToken } = controllers.auth;
+const { signup, loggedIn, login, refreshToken } = controllers.app.auth;
 
 router.post('/signup', signup);
 
