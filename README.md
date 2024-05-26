@@ -20,6 +20,7 @@
 - Users query for admin APIs
 - Email will be send to the admin when a user signs up
 - Pre-commit hook to check linting and formatting
+- Pre-push hook to check test coverage
 - Used JWT for authentication instead of firebase or oauth
 - Chai & Mocha used to cover api testing
 - api documents are exposed on /api-docs
@@ -36,6 +37,10 @@ npm run down:hard # to remove containers and clean their data also
 # database migrations
 npm run migrate:up # to run migrations (create tables and run seeds)
 npm run migrate:down # it will only undo the last run migration
+
+# test
+# make sure to run `npm run up` and npm run migrate:up
+npm test
 
 # finally
 npm run start:dev # to run dev environment
