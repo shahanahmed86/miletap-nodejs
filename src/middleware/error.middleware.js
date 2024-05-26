@@ -58,7 +58,7 @@ function checkAuth(role) {
 				});
 				if (!user) throw new NotAuthenticated();
 
-				res.locals.user = user;
+				res.locals.user = user.dataValues;
 			} else if (role === 'admin') {
 				const admin = await adminDao.findOne({
 					where: { id: decoded.id, email: decoded.email, role_id },
@@ -66,7 +66,7 @@ function checkAuth(role) {
 				});
 				if (!admin) throw new NotAuthenticated();
 
-				res.locals.user = admin;
+				res.locals.user = admin.dataValues;
 			} else {
 				throw new NotAuthenticated();
 			}

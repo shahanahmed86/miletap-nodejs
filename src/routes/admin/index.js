@@ -6,7 +6,6 @@ const { checkAuth } = require('../../middleware/error.middleware');
 const router = Router();
 
 router.use('/auth', authRoutes);
-
 router.use('/users', checkAuth('admin'), usersRoutes);
 
 module.exports = router;

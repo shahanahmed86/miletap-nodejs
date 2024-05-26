@@ -4,9 +4,16 @@
 	"env": {
 		"commonjs": true,
 		"es2021": true,
-		"node": true
+		"node": true,
+		"mocha": true
 	},
 	"extends": ["eslint:recommended", "plugin:security/recommended", "prettier"],
+	"overrides": [
+		{
+			"files": ["*.spec.js"],
+			"rules": { "no-unused-expressions": "off" }
+		}
+	],
 	"rules": {
 		"prettier/prettier": "error",
 		"security/detect-object-injection": "off",
@@ -15,10 +22,10 @@
 		"no-unused-vars": [
 			"off",
 			{
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
-        "caughtErrorsIgnorePattern": "^_"
-      }
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_",
+				"caughtErrorsIgnorePattern": "^_"
+			}
 		],
 		"security/detect-non-literal-require": "off"
 	}

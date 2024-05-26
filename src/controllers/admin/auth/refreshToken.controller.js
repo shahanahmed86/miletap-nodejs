@@ -25,7 +25,7 @@ async function refreshToken(req, res, next) {
 		email: user.dataValues.email,
 		role_id: user.dataValues.role_id,
 	});
-	res.status(200).send({ admin: user, accessToken, refreshToken });
+	res.status(200).send({ user, accessToken, refreshToken });
 }
 
 module.exports = refreshToken;

@@ -55,6 +55,16 @@ class BaseDao {
 	async create(payload, options) {
 		return this.model.create(payload, options);
 	}
+
+	/**
+	 * hardDelete
+	 * @param {FindOptions} filter
+	 * @returns {Promise<number>} returns found object or null
+	 */
+	async hardDelete(filter) {
+		const status = await this.model.destroy(filter);
+		return !!status;
+	}
 }
 
 module.exports = BaseDao;

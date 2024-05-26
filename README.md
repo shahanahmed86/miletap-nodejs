@@ -20,6 +20,7 @@
 - Email will be send to the admin when a user signs up
 - Pre-commit hook to check linting/testing and formatting
 - Used JWT for authentication instead of firebase or oauth
+- Chai & Mocha used to cover api testing
 
 ## Installation steps
 

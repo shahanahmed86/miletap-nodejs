@@ -30,7 +30,6 @@ const Configs = z.object({
 		username: z.string().min(1),
 		password: z.string().min(1),
 		database: z.string().min(1),
-		logging: z.enum(['true', 'false']).transform((arg) => (arg === 'true' ? console.log : false)),
 	}),
 	bcrypt: z.object({
 		salt: z.string().min(2).transform(transformToInteger),
@@ -70,7 +69,6 @@ const allEnvs = {
 		username: process.env.DB_USER,
 		password: process.env.DB_PASS,
 		database: process.env.DB_NAME,
-		logging: 'true',
 	},
 	bcrypt: {
 		salt: process.env.BCRYPT_SALT,

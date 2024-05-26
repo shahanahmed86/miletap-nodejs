@@ -5,6 +5,7 @@ const { ConflictError } = require('../../../utils/errors.util');
 const { SignUp } = require('../../../validations/auth.validation');
 const { generateAuthTokens } = require('../../../library/jwt.library');
 const { sendEmailWhenUserCreated } = require('../../../utils/logic.util');
+const configs = require('../../../config/app');
 
 /**
  * signup controller
@@ -33,7 +34,9 @@ async function signup(req, res, next) {
 		role_id: user.dataValues.role_id,
 	});
 
-	await sendEmailWhenUserCreated('A New User Registered', user.dataValues);
+	if (configs.app.env !== 'test') {
+		await sendEmailWhenUserCreated('A New User Registered', user.dataValues);
+	}
 
 	res.status(200).send({ user, accessToken, refreshToken });
 }
